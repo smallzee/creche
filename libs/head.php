@@ -4,7 +4,7 @@
         return;
     }
 
-    $name = explode(" ",admin_details('fname'))[0];
+    $name = admin_details('fname');
     $sn =1;
 ?>
 <!DOCTYPE html>
@@ -113,6 +113,27 @@
                     <a href="<?= base_url('class.php') ?>">
                         <i class="fa fa-users text-primary "></i>
                         <span>Student Classes</span>
+                    </a>
+                </li>
+
+                <li >
+                    <a href="<?= base_url('payment.php') ?>">
+                        <i class="fa fa-credit-card text-primary "></i>
+                        <span>Payment History</span>
+                    </a>
+                </li>
+
+                <li >
+                    <a href="<?= base_url('parent.php') ?>">
+                        <i class="fa fa-users text-primary "></i>
+                        <span>Parent's Information</span>
+                    </a>
+                </li>
+
+                <li >
+                    <a href="<?= base_url('student.php') ?>">
+                        <i class="fa fa-users text-primary "></i>
+                        <span>Student's Information</span>
                     </a>
                 </li>
 

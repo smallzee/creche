@@ -8,6 +8,37 @@
 
 $page_title = "Student Class Teachers";
 require_once 'config/core.php';
+if (isset($_POST['add'])){
+    $staff_id = $_POST['staff-id'];
+    $class_id = $_POST['class-id'];
+    $term = $_POST['term'];
+    $session = $_POST['session'];
+
+    if (empty($staff_id) or empty($class_id) or empty($term) or empty($session)){
+        $error[] = "All field(s) are required";
+    }
+
+    $sql = $db->query("SELECT * FROM ".DB_PREFIX."class_teacher WHERE staff_id='$staff_id' and class_id='$staff_id' and session='$session'");
+    if ($sql->rowCount() >= 1){
+        $error[] = "";
+    }
+
+
+    $error_count = count($error);
+    if ($error_count == 0){
+
+        $in = $db->query("INSERT INTO ".DB_PREFIX."class_teacher (staff_id,class_id,term,session)VALUES('$staff_id','$class_id','$term','$session')");
+
+        set_flash(admin_info($staff_id,'fname')." has been assigned as class teacher for ".student_class($class_id,'name'),'info');
+
+    }else{
+        $msg = ($error_count == 1) ? 'An error occurred' : 'Some error(s) occurred';
+        foreach ($error as $value){
+            $msg.='<p>'.$value.'</p>';
+        }
+        set_flash($msg,'danger');
+    }
+}
 require_once 'libs/head.php';
 ?>
 
@@ -75,7 +106,7 @@ require_once 'libs/head.php';
                                 <select name="session" class="form-control" required id="">
                                     <option value="" disabled selected>Select</option>
                                     <?php
-                                        foreach (range('2019',date('Y')) as $value){
+                                        foreach (range('2020',date('Y')) as $value){
                                             $start = $value-1;
                                             ?>
                                             <option value="<?= $start.'-'.$value ?>"><?= $start.'-'.$value ?></option>
@@ -119,6 +150,8 @@ require_once 'libs/head.php';
                         Add New Class Teacher
                     </button>
 
+                    <?php flash(); ?>
+
                     <div class="table-responsive">
                         <table class="table-bordered table-striped table" id="example1">
                             <thead>
@@ -143,6 +176,34 @@ require_once 'libs/head.php';
                                 <th>Actions</th>
                             </tr>
                             </tfoot>
+                            <tbody>
+                            <?php
+                                $sql = $db->query("SELECT c.*, a.fname, a.username, cc.name FROM ".DB_PREFIX."class_teacher c 
+                                LEFT JOIN ".DB_PREFIX."admin a
+                                     ON c.staff_id = a.id 
+                                LEFT JOIN ".DB_PREFIX."class cc
+                                     ON c.class_id = cc.id 
+                                ORDER BY c.id DESC");
+                                while ($rs = $sql->fetch(PDO::FETCH_ASSOC)){
+                                    ?>
+                                    <tr>
+                                        <td><?= $sn++ ?></td>
+                                        <td><?= $rs['username'] ?></td>
+                                        <td><?= ucwords($rs['fname']) ?></td>
+                                        <td><?= term($rs['term']); ?></td>
+                                        <td><?= ucwords($rs['name']) ?></td>
+                                        <td><?= $rs['session'] ?></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="" class="btn btn-primary btn-sm">View</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            ?>
+                            </tbody>
                         </table>
                     </div>
 

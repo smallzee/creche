@@ -68,3 +68,28 @@ function role($id){
     $rs = $sql->fetch(PDO::FETCH_ASSOC);
     return $rs['name'];
 }
+
+function admin_info($id,$value){
+    global $db;
+    $sql = $db->query("SELECT * FROM ".DB_PREFIX."admin WHERE id='$id'");
+    $rs = $sql->fetch(PDO::FETCH_ASSOC);
+    return $rs[$value];
+}
+
+function student_class($id,$value){
+    global $db;
+    $sql = $db->query("SELECT * FROM ".DB_PREFIX."class WHERE id='$id'");
+    $rs = $sql->fetch(PDO::FETCH_ASSOC);
+    return $rs[$value];
+}
+
+function term($n){
+    if ($n == 1){
+        $msg = "First Term";
+    }elseif($n == 2){
+        $msg = "Second Term";
+    }else{
+        $msg = "Third Term";
+    }
+    return $msg;
+}
