@@ -5,6 +5,7 @@
     }
 
     $name = explode(" ",admin_details('fname'))[0];
+    $sn =1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,8 +29,8 @@
     <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>bower_components/fullcalendar/dist/fullcalendar.min.css">
     <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?= HTML_TEMPLATE  ?>uploading-lib/dist/image-uploader.min.css">
     <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>dist/css/css.css">
     <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>plugins/pace/pace.min.css">
     <link rel="stylesheet" href="<?= HTML_TEMPLATE  ?>dist/css/bootstrap-datepicker.min.css">
 
@@ -70,7 +71,7 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<?= image_url('icon.jpeg') ?>" class="user-image" alt="User Image">
-                            <span class="hidden-xs"><?= ucwords(admin_details('fname')) ?></span>
+                            <span class="hidden-xs"><?= ucwords(admin_details('fname')) ?> (<?= ucwords(role(admin_details('role'))) ?>)</span>
                         </a>
                     </li>
                 </ul>
@@ -95,9 +96,30 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
                 <li >
-                    <a href="<?= base_url('admin/dashboard') ?>">
+                    <a href="<?= base_url('dashboard.php') ?>">
                         <i class="fa fa-home text-primary "></i>
                         <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li >
+                    <a href="<?= base_url('staff.php') ?>">
+                        <i class="fa fa-users text-primary "></i>
+                        <span>All Staffs</span>
+                    </a>
+                </li>
+
+                <li >
+                    <a href="<?= base_url('class.php') ?>">
+                        <i class="fa fa-users text-primary "></i>
+                        <span>Student Classes</span>
+                    </a>
+                </li>
+
+                <li >
+                    <a href="<?= base_url('class-teacher.php') ?>">
+                        <i class="fa fa-users text-primary "></i>
+                        <span>Student Class Teachers</span>
                     </a>
                 </li>
 

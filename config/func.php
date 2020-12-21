@@ -6,6 +6,8 @@
  * Time: 1:18 PM
  */
 
+$error = array();
+
 function base_url($url = ""){
     if (empty($url)){
         return HOME_DIR;
@@ -58,4 +60,11 @@ function admin_details($value){
     $sql = $db->query("SELECT * FROM ".DB_PREFIX."admin WHERE username='$username'");
     $rs = $sql->fetch(PDO::FETCH_ASSOC);
     return $rs[$value];
+}
+
+function role($id){
+    global $db;
+    $sql = $db->query("SELECT * FROM ".DB_PREFIX."role WHERE id='$id'");
+    $rs = $sql->fetch(PDO::FETCH_ASSOC);
+    return $rs['name'];
 }

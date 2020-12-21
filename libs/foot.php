@@ -28,7 +28,6 @@
 <script src="<?= HTML_TEMPLATE ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- FastClick -->
 <script src="<?= HTML_TEMPLATE ?>bower_components/fastclick/lib/fastclick.js"></script>
-<script src="<?= HTML_TEMPLATE  ?>uploading-lib/dist/image-uploader.min.js" ></script>
 <!-- Slimscroll -->
 <script src="<?= HTML_TEMPLATE ?>bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -39,10 +38,59 @@
 <script src="<?= HTML_TEMPLATE ?>bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= HTML_TEMPLATE ?>dist/js/demo.js"></script>
-<script src="<?= base_url('admin/js/main.js') ?>"></script>
 <!-- fullCalendar -->
 <script src="<?= HTML_TEMPLATE ?>bower_components/moment/moment.js"></script>
 <script src="<?= HTML_TEMPLATE ?>bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
 <!-- Page specific script -->
+
+<script type="text/javascript">
+    $(function (e) {
+       $("#example1").dataTable();
+    });
+
+    function  update_class(id,name) {
+        $(".show-modal").click();
+        $("#name").val(name);
+        $("#id").val(id);
+    }
+
+    function delete_class(id) {
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url :  '<?= base_url('class.php') ?>',
+                    type : 'post',
+                    dataType : 'json',
+                    data : {
+                        'delete' : '',
+                        'class_id' : id
+                    },
+                    success : function (response) {
+                        if (response.error == 1){
+                            swal("Deleted",response.msg,"success");
+                            setTimeout(function () {
+                                window.location.href ='<?= base_url('class.php') ?>';
+                            }, 2000);
+                        }
+                    },
+                    error : function (err) {
+                        // console.log(err.responseText);
+                        toast_alert("No internet connection, try again","error");
+                    }
+                });
+                return;
+            }
+            swal("Cancelled","cant be deleted","error");
+
+        });
+    }
+
+</script>
 </body>
 </html>
