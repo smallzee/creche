@@ -93,3 +93,11 @@ function term($n){
     }
     return $msg;
 }
+
+function amount_format($amount){
+    return "&#8358;".number_format($amount,2);
+}
+
+function checkemail($str) {
+    return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
+}

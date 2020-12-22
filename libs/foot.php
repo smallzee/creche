@@ -46,11 +46,23 @@
 <script type="text/javascript">
     $(function (e) {
        $("#example1").dataTable();
+
+       $("#occupation").change(function () {
+           if ($(this).val() == 'fpe staff'){
+               $(".school-fee-deduction").removeClass('hide');
+               return;
+           }
+
+           $(".school-fee-deduction").addClass('hide');
+       })
+
+
     });
 
-    function  update_class(id,name) {
+    function  update_class(id,name,amount) {
         $(".show-modal").click();
         $("#name").val(name);
+        $("#amount").val(amount);
         $("#id").val(id);
     }
 

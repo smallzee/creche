@@ -11,8 +11,17 @@ require_once 'config/core.php';
 
 if (isset($_POST['add'])){
     $name = strtolower($_POST['name']);
+    $amount = $_POST['amount'];
     if (empty($name)){
         $error[] = "Class name is required";
+    }
+
+    if (empty($amount)){
+        $error[] = "school fee amount is required";
+    }
+
+    if (!is_numeric($amount)){
+        $error[] = "Invalid school fee amount entered";
     }
 
     $sql = $db->query("SELECT * FROM ".DB_PREFIX."class WHERE name='$name'");
@@ -23,7 +32,7 @@ if (isset($_POST['add'])){
     $error_count = count($error);
     if ($error_count == 0){
 
-        $in = $db->query("INSERT INTO ".DB_PREFIX."class (name)VALUE('$name')");
+        $in = $db->query("INSERT INTO ".DB_PREFIX."class (name,school_fee)VALUE('$name','$amount')");
         set_flash("$name has been added successfully","info");
 
         redirect(base_url('class.php'));
@@ -40,15 +49,25 @@ if (isset($_POST['add'])){
 if (isset($_POST['edit'])){
     $name = strtolower($_POST['name']);
     $id = $_POST['id'];
+    $amount = $_POST['amount'];
+
+
     if (empty($name)){
         $error[] = "Class name is required";
     }
 
+    if (empty($amount)){
+        $error[] = "school fee amount is required";
+    }
+
+    if (!is_numeric($amount)){
+        $error[] = "Invalid school fee amount entered";
+    }
 
     $error_count = count($error);
     if ($error_count == 0){
 
-        $up = $db->query("UPDATE ".DB_PREFIX."class SET name='$name' WHERE id='$id'");
+        $up = $db->query("UPDATE ".DB_PREFIX."class SET name='$name', school_fee='$amount' WHERE id='$id'");
         set_flash("$name has been updated successfully","info");
 
         redirect(base_url('class.php'));
@@ -89,6 +108,11 @@ require_once 'libs/head.php';
                     </div>
 
                     <div class="form-group">
+                        <label for="">School Fee Amount</label>
+                        <input type="text" class="form-control" name="amount" required placeholder="School Fee Amount" id="">
+                    </div>
+
+                    <div class="form-group">
                         <input type="submit" name="add" class="btn btn-primary btn-sm" value="Submit" id="">
                     </div>
                 </form>
@@ -114,6 +138,11 @@ require_once 'libs/head.php';
                         <label for="">Class Name</label>
                         <input type="text" class="form-control" required name="name" placeholder="Class Name" id="name">
                         <input type="hidden" name="id" id="id">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">School Fee Amount</label>
+                        <input type="text" class="form-control" name="amount" required placeholder="School Fee Amount" id="amount">
                     </div>
 
                     <div class="form-group">
@@ -157,6 +186,7 @@ require_once 'libs/head.php';
                             <tr>
                                 <th>SN</th>
                                 <th>Class Name</th>
+                                <th>School Fee</th>
                                 <th>Created At</th>
                                 <th>Actions</th>
                             </tr>
@@ -165,6 +195,7 @@ require_once 'libs/head.php';
                             <tr>
                                 <th>SN</th>
                                 <th>Class Name</th>
+                                <th>School Fee</th>
                                 <th>Created At</th>
                                 <th>Actions</th>
                             </tr>
@@ -177,10 +208,11 @@ require_once 'libs/head.php';
                                     <tr>
                                         <td><?= $sn++ ?></td>
                                         <td><?= ucwords($rs['name']) ?></td>
+                                        <td><?= amount_format($rs['school_fee']); ?></td>
                                         <td><?= $rs['created_at'] ?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="#" onclick="update_class('<?= $rs['id'] ?>','<?= $rs['name'] ?>')" class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="#" onclick="update_class('<?= $rs['id'] ?>','<?= $rs['name'] ?>','<?= $rs['school_fee'] ?>')" class="btn btn-primary btn-sm">Edit</a>
                                                 <a href="#" onclick="delete_class('<?= $rs['id'] ?>')" class="btn btn-danger btn-sm">Danger</a>
                                             </div>
                                         </td>

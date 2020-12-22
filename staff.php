@@ -13,21 +13,34 @@ if (isset($_POST['add'])){
     $password = $username;
     $fname = $_POST['fname'];
     $role = $_POST['role'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
 
     if (empty($username) or empty($fname) or empty($role)){
         $error[]= "All field(s) are required";
     }
 
-    $sql = $db->query("SELECT * FROM ".DB_PREFIX."admin WHERE username='$username'");
+    $sql = $db->query("SELECT * FROM ".DB_PREFIX."admin WHERE username='$username' and phone='$phone' and email='$email'");
     if ($sql->rowCount() >= 1){
-        $error[] = "Staff id has already exist";
+        $error[] = "Staff id or email or phone number has already exist";
     }
 
+    if (strlen($phone) != 11){
+        $error[] = "Invalid phone number entered, it should be exactly 11 numbers";
+    }
+
+    if (!is_numeric($phone)){
+        $error[] = "Invalid phone number format, it should be only digit number";
+    }
+
+    if (!empty($email) && !checkemail($email)){
+        $error[] = "Invalid email address entered";
+    }
 
     $error_count = count($error);
     if ($error_count == 0){
 
-        $in = $db->query("INSERT INTO ".DB_PREFIX."admin (username,fname,role,password)VALUES('$username','$fname','$role','$password')");
+        $in = $db->query("INSERT INTO ".DB_PREFIX."admin (username,fname,role,password,phone,email)VALUES('$username','$fname','$role','$password','$phone','$email')");
 
         set_flash("Staff has been added successfully","info");
 
@@ -67,7 +80,6 @@ require_once 'libs/head.php';
                                 <input type="text" class="form-control" required placeholder="Staff Name" name="fname" id="">
                             </div>
                         </div>
-
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="">Staff Role</label>
@@ -85,6 +97,21 @@ require_once 'libs/head.php';
                                         }
                                     ?>
                                 </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Email Address</label>
+                                <input type="email" name="email" class="form-control" required placeholder="Email Address" id="">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Phone Number</label>
+                                <input type="phone" name="phone" class="form-control" required placeholder="Phone Number" id="">
                             </div>
                         </div>
                     </div>
@@ -131,6 +158,8 @@ require_once 'libs/head.php';
                                 <th>SN</th>
                                 <th>Staff Id</th>
                                 <th>Full Name</th>
+                                <th>Email Address</th>
+                                <th>Phone Number</th>
                                 <th>Role</th>
                                 <th>Created At</th>
                             </tr>
@@ -140,6 +169,8 @@ require_once 'libs/head.php';
                                 <th>SN</th>
                                 <th>Staff Id</th>
                                 <th>Full Name</th>
+                                <th>Email Address</th>
+                                <th>Phone Number</th>
                                 <th>Role</th>
                                 <th>Created At</th>
                             </tr>
@@ -154,6 +185,8 @@ require_once 'libs/head.php';
                                         <td><?= $sn++ ?></td>
                                         <td><?= $rs['username'] ?></td>
                                         <td><?= $rs['fname'] ?></td>
+                                        <td><?= $rs['email'] ?></td>
+                                        <td><?= $rs['phone'] ?></td>
                                         <td><?= ucwords($rs['name']) ?></td>
                                         <td><?= $rs['created_at'] ?></td>
                                     </tr>
