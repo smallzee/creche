@@ -81,6 +81,95 @@ require_once 'libs/head.php';
             <!-- /.info-box -->
         </div>
 
+        <div class="col-sm-6">
+            <div class="box ">
+                <div class="box-header with-border">All Staffs</div>
+                <div class="box-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>SN</th>
+                                <th>Full Name</th>
+                                <th>Phone Number</th>
+                                <th>Email Address</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>SN</th>
+                                <th>Full Name</th>
+                                <th>Phone Number</th>
+                                <th>Email Address</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <?php
+                                $sql = $db->query("SELECT * FROM ".DB_PREFIX."admin ORDER BY id DESC LIMIT 0,8");
+                                while ($rs = $sql->fetch(PDO::FETCH_ASSOC)){
+                                    ?>
+                                    <tr>
+                                        <td><?= $sn++ ?></td>
+                                        <td><?= $rs['fname'] ?></td>
+                                        <td><?= $rs['phone'] ?></td>
+                                        <td><?= $rs['email'] ?></td>
+                                    </tr>
+                                    <?php
+                                }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="box ">
+                <div class="box-header with-border">All Staffs</div>
+                <div class="box-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>SN</th>
+                                <th>Full Name</th>
+                                <th>Phone Number</th>
+                                <th>Email Address</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>SN</th>
+                                <th>Full Name</th>
+                                <th>Phone Number</th>
+                                <th>Email Address</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <?php
+                            $sql = $db->query("SELECT * FROM ".DB_PREFIX."admin ORDER BY id DESC LIMIT 0,8");
+                            while ($rs = $sql->fetch(PDO::FETCH_ASSOC)){
+                                ?>
+                                <tr>
+                                    <td><?= $sn++ ?></td>
+                                    <td><?= $rs['fname'] ?></td>
+                                    <td><?= $rs['phone'] ?></td>
+                                    <td><?= $rs['email'] ?></td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
