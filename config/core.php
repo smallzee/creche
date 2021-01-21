@@ -20,9 +20,9 @@
 
     if (Env == "online") {
         define('DB_HOST', 'localhost');
-        define('DB_TABLE', 'zaodlibb_main');
-        define('DB_USER', 'zaodlibb_main');
-        define('DB_PASSWORD', '8#&c}}N.#k5x');
+        define('DB_TABLE', 'verajnse_creche');
+        define('DB_USER', 'verajnse_creche');
+        define('DB_PASSWORD', ';XW8Ll#wss&j');
     }else{
         define('DB_HOST', 'localhost');
         define('DB_TABLE', 'app_fpe_creche');

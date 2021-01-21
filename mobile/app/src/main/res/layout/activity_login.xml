@@ -1,9 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@color/colorPrimary" />
+
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_centerInParent="true"
+           android:orientation="vertical"
+           android:padding="@dimen/spacing_mlarge">
+
+           <de.hdodenhof.circleimageview.CircleImageView
+               android:layout_width="130dp"
+               android:layout_height="130dp"
+               android:src="@drawable/icon"
+               android:layout_marginTop="@dimen/spacing_large"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginBottom="@dimen/spacing_large"
+               app:civ_border_color="@color/white"
+               app:civ_border_width="2dp" />
+
+           <androidx.cardview.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_margin="@dimen/spacing_middle"
+               android:visibility="visible"
+               app:cardCornerRadius="6dp"
+               app:cardElevation="5dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   android:padding="@dimen/spacing_mlarge">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_horizontal"
+                       android:layout_marginBottom="@dimen/spacing_xlarge"
+                       android:layout_marginTop="@dimen/spacing_middle"
+                       android:text="Parent Login Account"
+                       android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                       android:textColor="@color/blue_700"
+                       android:textStyle="bold" />
+
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Parent Id"
+                       android:textAlignment="center"
+                       android:textSize="@dimen/spacing_large"
+                       android:layout_marginBottom="@dimen/spacing_large"
+                       android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                       android:textColor="@color/grey_40"
+                       android:gravity="center_horizontal" />
+
+
+                   <com.google.android.material.textfield.TextInputLayout
+                       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                       android:textSize="14dp"
+                       android:layout_width="match_parent"
+                       android:hint="Parent Id"
+                       android:layout_height="wrap_content">
+
+                       <com.google.android.material.textfield.TextInputEditText
+                           android:id="@+id/parent_id"
+                           android:textSize="14dp"
+                           android:padding="@dimen/spacing_large"
+                           android:tooltipText="Enter your parent id"
+                           android:inputType="text"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"/>
+                   </com.google.android.material.textfield.TextInputLayout>
+
+
+                   <View
+                       android:layout_width="0dp"
+                       android:layout_height="@dimen/spacing_mlarge" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Password"
+                       android:textSize="@dimen/spacing_large"
+                       android:textAlignment="center"
+                       android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                       android:textColor="@color/grey_40"
+                       android:gravity="center_horizontal" />
+
+                   <com.google.android.material.textfield.TextInputLayout
+                       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                       boxStrokeWidth="1dp"
+                       android:textSize="14dp"
+                       app:passwordToggleEnabled="true"
+                       android:layout_marginTop="10dp"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:hint="Password">
+
+                       <com.google.android.material.textfield.TextInputEditText
+                           android:id="@+id/password"
+                           android:padding="@dimen/spacing_middle"
+                           android:inputType="textPassword"
+                           android:textSize="14dp"
+                           android:tooltipText="Enter your password"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"/>
+                   </com.google.android.material.textfield.TextInputLayout>
+
+                   <View
+                       android:layout_width="0dp"
+                       android:layout_height="@dimen/spacing_mlarge" />
+
+                   <Button
+                       android:layout_width="match_parent"
+                       android:layout_height="55dp"
+                       android:id="@+id/login"
+                       android:layout_marginLeft="-4dp"
+                       android:layout_marginRight="-4dp"
+                       android:background="@drawable/btn_purple_a400"
+                       android:text="Login"
+                       android:textAllCaps="true"
+                       android:textColor="@android:color/white"
+                       android:textStyle="bold" />
+
+
+               </LinearLayout>
+           </androidx.cardview.widget.CardView>
+
+
+       </LinearLayout>
+
+   </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>
