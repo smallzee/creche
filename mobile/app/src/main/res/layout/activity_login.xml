@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:background="@color/colorPrimary" />
 
    <androidx.core.widget.NestedScrollView
        android:layout_width="match_parent"
@@ -22,23 +18,37 @@
            android:orientation="vertical"
            android:padding="@dimen/spacing_mlarge">
 
+           <TextView
+               android:layout_width="match_parent"
+               android:text="Project Topic"
+               style="@style/TextAppearance.AppCompat.Body2"
+               android:textStyle="bold"
+               android:textSize="@dimen/spacing_mlarge"
+               android:textColor="@color/black"
+               android:textAlignment="center"
+               android:layout_marginBottom="@dimen/spacing_medium"
+               android:layout_height="wrap_content"
+               android:gravity="center_horizontal" />
+
+           <TextView
+               android:layout_width="match_parent"
+               android:fontFamily="sans-serif-light"
+               android:text="Design and implementation of an android based student clearance system"
+               android:textSize="@dimen/spacing_large"
+               android:padding="@dimen/spacing_medium"
+               android:textColor="@color/black"
+               android:textAlignment="center"
+               android:layout_marginBottom="@dimen/spacing_large"
+               android:layout_height="wrap_content"
+               android:gravity="center_horizontal" />
+
            <de.hdodenhof.circleimageview.CircleImageView
                android:layout_width="130dp"
                android:layout_height="130dp"
                android:src="@drawable/icon"
-               android:layout_marginTop="@dimen/spacing_large"
                android:layout_gravity="center_horizontal"
-               android:layout_marginBottom="@dimen/spacing_large"
                app:civ_border_color="@color/white"
                app:civ_border_width="2dp" />
-
-           <androidx.cardview.widget.CardView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_margin="@dimen/spacing_middle"
-               android:visibility="visible"
-               app:cardCornerRadius="6dp"
-               app:cardElevation="5dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -49,9 +59,9 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
+                       android:fontFamily="sans-serif-light"
                        android:layout_gravity="center_horizontal"
                        android:layout_marginBottom="@dimen/spacing_xlarge"
-                       android:layout_marginTop="@dimen/spacing_middle"
                        android:text="Parent Login Account"
                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                        android:textColor="@color/blue_700"
@@ -62,6 +72,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="Parent Id"
+                       android:fontFamily="sans-serif-light"
                        android:textAlignment="center"
                        android:textSize="@dimen/spacing_large"
                        android:layout_marginBottom="@dimen/spacing_large"
@@ -97,6 +108,7 @@
                        android:layout_height="wrap_content"
                        android:text="Password"
                        android:textSize="@dimen/spacing_large"
+                       android:fontFamily="sans-serif-light"
                        android:textAlignment="center"
                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                        android:textColor="@color/grey_40"
@@ -130,18 +142,20 @@
                        android:layout_width="match_parent"
                        android:layout_height="55dp"
                        android:id="@+id/login"
-                       android:layout_marginLeft="-4dp"
-                       android:layout_marginRight="-4dp"
-                       android:background="@drawable/btn_purple_a400"
                        android:text="Login"
-                       android:textAllCaps="true"
-                       android:textColor="@android:color/white"
-                       android:textStyle="bold" />
+                       android:layout_marginBottom="@dimen/spacing_large"
+                       android:textColor="@android:color/white"/>
 
 
+                   <Button
+                       android:layout_width="wrap_content"
+                       android:layout_gravity="center"
+                       android:text="Developed By"
+                       android:id="@+id/developed_by"
+                       android:layout_marginTop="@dimen/spacing_medium"
+                       android:fontFamily="sans-serif-light"
+                       android:layout_height="wrap_content"/>
                </LinearLayout>
-           </androidx.cardview.widget.CardView>
-
 
        </LinearLayout>
 
