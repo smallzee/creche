@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,12 +20,13 @@ import com.app.fpestaffschool.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
 
     SharedPreferences sharedPreferences;
-    public String data;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,8 +42,6 @@ public class DashboardFragment extends Fragment {
         try {
 
             JSONObject object = new JSONObject(sharedPreferences.getString("all_user_info", null));
-
-            
 
         }catch (JSONException e){
             e.printStackTrace();
