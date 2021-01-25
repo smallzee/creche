@@ -26,7 +26,7 @@ if (isset($_POST['login'])){
         ON s.class_id = c.id
      WHERE s.parent_id='$parent_id2'");
 
-//    $parent_info['image'] = image_url($parent_info['image']);
+    $parent_info['image'] = image_url($parent_info['image']);
 
     if ($sql->rowCount() == 0){
         $data['error'] = 0;

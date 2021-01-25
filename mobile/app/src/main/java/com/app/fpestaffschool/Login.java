@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        this.setTitle("Parent Login Account");
+        this.setTitle("Parent Account Login");
 
         login = findViewById(R.id.login);
         parent_id = findViewById(R.id.parent_id);

@@ -62,9 +62,8 @@
                        android:fontFamily="sans-serif-light"
                        android:layout_gravity="center_horizontal"
                        android:layout_marginBottom="@dimen/spacing_xlarge"
-                       android:text="Parent Login Account"
+                       android:text="Parent Account Login"
                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                       android:textColor="@color/blue_700"
                        android:textStyle="bold" />
 
 

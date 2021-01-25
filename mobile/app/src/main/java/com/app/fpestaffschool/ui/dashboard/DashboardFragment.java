@@ -1,5 +1,7 @@
 package com.app.fpestaffschool.ui.dashboard;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,22 +16,37 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.app.fpestaffschool.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
+
+    SharedPreferences sharedPreferences;
+    public String data;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
                 new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_children, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+
+
+        sharedPreferences = getActivity().getSharedPreferences("ALL_USER_INFO", Context.MODE_PRIVATE);
+
+        try {
+
+            JSONObject object = new JSONObject(sharedPreferences.getString("all_user_info", null));
+
+            
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
         return root;
     }
 }
