@@ -35,8 +35,6 @@ public class DashboardFragment extends Fragment {
                 new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_children, container, false);
 
-
-
         sharedPreferences = getActivity().getSharedPreferences("ALL_USER_INFO", Context.MODE_PRIVATE);
 
         try {

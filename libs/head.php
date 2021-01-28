@@ -164,7 +164,7 @@
                 <?= $page_title ?>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="<?= base_url('admin/dashboard') ?>"><i class="fa fa-home"></i> Dashboard</a></li>
+                <li><a href="<?= base_url('dashboard.php') ?>"><i class="fa fa-home"></i> Dashboard</a></li>
                 <li class="active"><?= $page_title ?></li>
             </ol>
         </section>
