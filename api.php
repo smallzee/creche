@@ -35,12 +35,13 @@ if (isset($_POST['login'])){
         $data['error'] = 1;
         while ($children_data = $children->fetch(PDO::FETCH_ASSOC)){
             $ch_data[] = array(
+                'id'=>$children_data['id'],
                 'image'=>image_url($children_data['image']),
-                'fname'=>$children_data['fname'],
-                'class_name'=>$children_data['class_name'],
+                'fname'=>ucwords($children_data['fname']),
+                'class_name'=>ucwords($children_data['class_name']),
                 'term'=>term($children_data['term']),
                 'academic_session'=>$children_data['academic_session'],
-                'gender'=>$children_data['gender'],
+                'gender'=>ucwords($children_data['gender']),
                 'birth'=>$children_data['birth']
             );
         }
