@@ -10,7 +10,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS, PATCH, DELETE');
 require_once 'config/core.php';
 
-$data = $error = $ch_data = array();
+$data = $error = $ch_data = $msg_data2 = $msg_data = array();
 $post_data = $_POST;
 
 if (isset($_POST['login'])){
@@ -45,12 +45,36 @@ if (isset($_POST['login'])){
                 'birth'=>$children_data['birth']
             );
         }
+
+        $msg = $db->query("SELECT * FROM ".DB_PREFIX."notifications ORDER BY id DESC");
+        while ($info_msg = $msg->fetch(PDO::FETCH_ASSOC)){
+            $msg_data[] = array(
+                'decode_parent' => json_decode($info_msg['parent_json'],1),
+                'subject'=>$info_msg['subject'],
+                'message'=>$info_msg['message']
+            );
+        }
+
+        if (is_array($msg_data) or count($msg_data) > 0){
+            for ($i = 0; $i < count($msg_data); $i++){
+                $decode_parent = $msg_data[$i]['decode_parent'];
+
+                if (in_array($parent_id,$decode_parent)){
+                    $msg_data2[] = array(
+                        'subject'=>$msg_data[$i]['subject'],
+                        'message'=>$msg_data[$i]['message']
+                    );
+                }
+
+            }
+        }
     }
 
     $info = array(
         'status'=>$data,
         'parent_data'=>$parent_info,
-        'children_data'=>$ch_data
+        'children_data'=>$ch_data,
+        'notification'=>$msg_data2
     );
 
     echo json_encode($info);

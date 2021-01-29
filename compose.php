@@ -8,6 +8,50 @@
 
 $page_title = "Compose Message";
 require_once 'config/core.php';
+if (isset($_POST['send'])){
+    @$to = $_POST['to'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+    $emails = array();
+
+    if (count($to) == 0){
+        $error[] = "Recipient is required";
+    }
+
+    if (empty($subject) or empty($message)){
+        $error[] = "Subject and message are required";
+    }
+
+    for ($i = 0; $i < count($to); $i++){
+        $emails[] = array('email'=>parent_info($to[$i],'email'));
+    }
+
+    @$parent_id_json = json_encode($to);
+
+
+    $error_count = count($error);
+    if ($error_count == 0){
+
+        // send email notification
+        if (is_array($emails) && count($emails) > 0){
+
+        }
+
+        $send_by = admin_details('id');
+
+        $db->query("INSERT INTO ".DB_PREFIX."notifications (parent_json,subject,message,send_by)VALUES('$parent_id_json','$subject','$message','$send_by')");
+        set_flash("Message was sent successfully","info");
+
+        redirect(base_url("compose.php"));
+
+    }else{
+        $msg = ($error_count == 1) ? 'An error is occurred' : 'Some error are occured';
+        foreach ($error as $value){
+            $msg.='<p>'.$value.'</p>';
+        }
+        set_flash($msg,'danger');
+    }
+}
 require_once 'libs/head.php';
 ?>
 
@@ -27,6 +71,8 @@ require_once 'libs/head.php';
                 </div>
                 <div class="box-body">
 
+                    <?php flash(); ?>
+
                     <form action="" method="post">
                         <div class="row">
                             <div class="col-sm-6">
@@ -38,7 +84,7 @@ require_once 'libs/head.php';
 
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="">To</label>
+                                    <label for="">Recipient</label>
                                     <select name="to[]" class="form-control select2" required multiple id="">
                                         <?php
                                             $sql = $db->query("SELECT * FROM ".DB_PREFIX."parents ORDER BY fname");

@@ -118,6 +118,14 @@
                     </a>
                 </li>
 
+
+                <li >
+                    <a href="<?= base_url('message.php') ?>">
+                        <i class="fa fa-envelope text-primary "></i>
+                        <span>Sent Messages</span>
+                    </a>
+                </li>
+
                 <li >
                     <a href="<?= base_url('payment.php') ?>">
                         <i class="fa fa-credit-card text-primary "></i>
