@@ -23,6 +23,8 @@
 <!-- Morris.js charts -->
 <script src="<?= HTML_TEMPLATE ?>bower_components/raphael/raphael.min.js"></script>
 <script src="<?= HTML_TEMPLATE ?>bower_components/morris.js/morris.min.js"></script>
+<!-- Select2 -->
+<script src="<?= HTML_TEMPLATE ?>bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- DataTables -->
 <script src="<?= HTML_TEMPLATE ?>bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?= HTML_TEMPLATE ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -46,6 +48,8 @@
 <script type="text/javascript">
     $(function (e) {
        $("#example1").dataTable();
+
+        $('.select2').select2()
 
        $("#occupation").change(function () {
            if ($(this).val() == 'fpe staff'){

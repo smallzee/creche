@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>bower_components/fullcalendar/dist/fullcalendar.min.css">
     <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
     <!-- Theme style -->
+    <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>bower_components/select2/dist/css/select2.min.css">
+    <!-- Theme style -->
     <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>dist/css/css.css">
     <link rel="stylesheet" href="<?= HTML_TEMPLATE ?>plugins/pace/pace.min.css">
@@ -120,6 +122,13 @@
                     <a href="<?= base_url('payment.php') ?>">
                         <i class="fa fa-credit-card text-primary "></i>
                         <span>Payment History</span>
+                    </a>
+                </li>
+
+                <li >
+                    <a href="<?= base_url('compose.php') ?>">
+                        <i class="fa fa-envelope text-primary "></i>
+                        <span>Compose Message</span>
                     </a>
                 </li>
 
