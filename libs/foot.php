@@ -47,7 +47,7 @@
 
 <script type="text/javascript">
     $(function (e) {
-       $("#example1").dataTable();
+       $("#example1, #example").dataTable();
 
         $('.select2').select2()
 

@@ -66,12 +66,12 @@ require_once 'libs/head.php';
 
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="info-box bg-blue-gradient">
-                <span class="info-box-icon"><i class="fa fa-users"></i></span>
+                <span class="info-box-icon"><i class="fa fa-book"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text mt-10">Total Student Classes</span>
+                    <span class="info-box-text mt-10">Total Class Subject</span>
                     <span class="info-box-number">
                      <?php
-                     $sql = $db->query("SELECT * FROM ".DB_PREFIX."class ");
+                     $sql = $db->query("SELECT * FROM ".DB_PREFIX."subjects ");
                      echo $sql->rowCount();
                      ?>
                     </span>
@@ -87,7 +87,7 @@ require_once 'libs/head.php';
                 <div class="box-body">
 
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="example">
                             <thead>
                             <tr>
                                 <th>SN</th>
@@ -132,7 +132,7 @@ require_once 'libs/head.php';
                 <div class="box-body">
 
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="example1">
                             <thead>
                             <tr>
                                 <th>SN</th>
