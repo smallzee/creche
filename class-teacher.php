@@ -159,9 +159,7 @@ require_once 'libs/head.php';
                                 <th>SN</th>
                                 <th>Class Teacher Id</th>
                                 <th>Class Teacher Name</th>
-                                <th>Term</th>
                                 <th>Class Name</th>
-                                <th>Academic Session</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -170,9 +168,7 @@ require_once 'libs/head.php';
                                 <th>SN</th>
                                 <th>Class Teacher Id</th>
                                 <th>Class Teacher Name</th>
-                                <th>Term</th>
                                 <th>Class Name</th>
-                                <th>Academic Session</th>
                                 <th>Actions</th>
                             </tr>
                             </tfoot>
@@ -190,13 +186,11 @@ require_once 'libs/head.php';
                                         <td><?= $sn++ ?></td>
                                         <td><?= $rs['username'] ?></td>
                                         <td><?= ucwords($rs['fname']) ?></td>
-                                        <td><?= term($rs['term']); ?></td>
                                         <td><?= ucwords($rs['name']) ?></td>
-                                        <td><?= $rs['session'] ?></td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="" class="btn btn-primary btn-sm">Edit</a>
-                                                <a href="" class="btn btn-primary btn-sm">View</a>
+                                                <a href="" class="btn btn-primary btn-sm">View student</a>
                                             </div>
                                         </td>
                                     </tr>

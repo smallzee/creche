@@ -51,7 +51,8 @@ if (isset($_POST['login'])){
             $msg_data[] = array(
                 'decode_parent' => json_decode($info_msg['parent_json'],1),
                 'subject'=>$info_msg['subject'],
-                'message'=>$info_msg['message']
+                'message'=>$info_msg['message'],
+                'created_at'=>$info_msg['created_at']
             );
         }
 
@@ -61,8 +62,11 @@ if (isset($_POST['login'])){
 
                 if (in_array($parent_id,$decode_parent)){
                     $msg_data2[] = array(
-                        'subject'=>$msg_data[$i]['subject'],
-                        'message'=>$msg_data[$i]['message']
+                        'id'=>$msg_data[$i]['id'],
+                        'image'=>image_url('bell.jpeg'),
+                        'subject'=>ucwords($msg_data[$i]['subject']),
+                        'message'=>$msg_data[$i]['message'],
+                        'created_at'=>$msg_data[$i]['created_at']
                     );
                 }
 

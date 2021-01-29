@@ -1,4 +1,4 @@
-package com.app.fpestaffschool.ui.dashboard;
+package com.app.fpestaffschool.ui.children;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

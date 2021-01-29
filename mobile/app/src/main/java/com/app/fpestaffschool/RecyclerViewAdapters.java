@@ -41,7 +41,8 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.st_matric.setText(((Lists) mData.get(position)).getMatric());
-        holder.st_name.setText(((Lists) mData.get(position)).getName() +" "+ ((Lists) mData.get(position)).getLevel());
+        holder.st_name.setText(((Lists) mData.get(position)).getName());
+        holder.st_level.setText(((Lists) mData.get(position)).getLevel());
 
         String is_click = ((Lists) mData.get(position)).getIs_click();
 
@@ -77,8 +78,8 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
 
         private LinearLayout click;
         private ImageView st_image;
-        private TextView st_matric;
-        private TextView st_name;
+        private TextView st_matric,st_name,st_level;
+
 
         public MyViewHolder(@NonNull android.view.View itemView) {
 
@@ -86,6 +87,7 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
 
             st_matric = (TextView) itemView.findViewById(R.id.st_matric);
             st_name = (TextView) itemView.findViewById(R.id.st_name);
+            st_level = (TextView) itemView.findViewById(R.id.st_level);
             st_image = (ImageView) itemView.findViewById(R.id.st_image);
             click = (LinearLayout) itemView.findViewById(R.id.click);
 

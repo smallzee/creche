@@ -166,7 +166,7 @@ require_once 'libs/head.php';
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="">Parent Name</label>
-                                <select name="parent_id" class="form-control select2" required id="">
+                                <select name="parent_id" class="form-control select2" style="width: 100%" required id="">
                                     <option value="" disabled selected>Select</option>
                                     <?php
                                         $sql = $db->query("SELECT * FROM ".DB_PREFIX."parents ORDER BY fname");
