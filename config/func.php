@@ -83,6 +83,13 @@ function student_class($id,$value){
     return $rs[$value];
 }
 
+function subject($id,$value){
+    global $db;
+    $sql = $db->query("SELECT * FROM ".DB_PREFIX."subjects WHERE id='$id'");
+    $rs = $sql->fetch(PDO::FETCH_ASSOC);
+    return $rs[$value];
+}
+
 function term($n){
     if ($n == 1){
         $msg = "First Term";
@@ -108,3 +115,4 @@ function parent_info($id,$value){
     $rs = $sql->fetch(PDO::FETCH_ASSOC);
     return $rs[$value];
 }
+
