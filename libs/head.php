@@ -112,6 +112,13 @@
                 </li>
 
                 <li >
+                    <a href="<?= base_url('subject.php') ?>">
+                        <i class="fa fa-book text-primary "></i>
+                        <span>Subjects</span>
+                    </a>
+                </li>
+
+                <li >
                     <a href="<?= base_url('class.php') ?>">
                         <i class="fa fa-users text-primary "></i>
                         <span>Student Classes</span>
