@@ -29,6 +29,18 @@ require_once 'libs/head.php';
                 </div>
                 <div class="box-body">
 
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="example1">
+                            <thead>
+                            <tr>
+                                <th>SN</th>
+                                <th>Subject Name</th>
+                                <th>Created At</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+
                 </div>
             </div>
 
