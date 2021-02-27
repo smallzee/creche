@@ -50,6 +50,7 @@ if (isset($_POST['login'])){
         while ($info_msg = $msg->fetch(PDO::FETCH_ASSOC)){
             $msg_data[] = array(
                 'decode_parent' => json_decode($info_msg['parent_json'],1),
+                'id'=>$info_msg['id'],
                 'subject'=>$info_msg['subject'],
                 'message'=>$info_msg['message'],
                 'created_at'=>$info_msg['created_at']
