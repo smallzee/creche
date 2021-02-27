@@ -1,161 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".Login">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:layout_height="wrap_content">
 
-   <androidx.core.widget.NestedScrollView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:layout_centerInParent="true"
-           android:orientation="vertical"
-           android:padding="@dimen/spacing_mlarge">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-           <TextView
-               android:layout_width="match_parent"
-               android:text="Project Topic"
-               style="@style/TextAppearance.AppCompat.Body2"
-               android:fontFamily="sans-serif-condensed"
-               android:textSize="@dimen/spacing_mlarge"
-               android:textColor="@color/black"
-               android:textAlignment="center"
-               android:layout_marginBottom="@dimen/spacing_medium"
-               android:layout_height="wrap_content"
-               android:gravity="center_horizontal" />
+                <LinearLayout
+                    android:layout_width="330dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_large">
 
-           <TextView
-               android:layout_width="match_parent"
-               android:fontFamily="sans-serif-condensed"
-               android:text="Design and implementation of an android based student clearance system \n \n (A case study of staff school)"
-               android:textSize="@dimen/spacing_large"
-               android:padding="@dimen/spacing_medium"
-               android:textColor="@color/black"
-               android:textAlignment="center"
-               android:layout_marginBottom="@dimen/spacing_large"
-               android:layout_height="wrap_content"
-               android:gravity="center_horizontal" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Project Topic"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textSize="@dimen/spacing_mlarge"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal" />
 
-           <de.hdodenhof.circleimageview.CircleImageView
-               android:layout_width="100dp"
-               android:layout_height="100dp"
-               android:src="@drawable/icon"
-               android:layout_gravity="center_horizontal"
-               app:civ_border_color="@color/white"
-               app:civ_border_width="2dp" />
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:src="@drawable/logo"
+                        android:layout_height="120dp"/>
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical"
-                   android:padding="@dimen/spacing_mlarge">
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="sans-serif-condensed"
-                       android:layout_gravity="center_horizontal"
-                       android:layout_marginBottom="@dimen/spacing_xlarge"
-                       android:text="Parent Account Login"
-                       android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="Design and implementation of an android based creche management system \n \n (A case study of staff school)"
+                        android:textSize="@dimen/spacing_large"
+                        android:padding="@dimen/spacing_medium"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal" />
 
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="Parent Id"
-                       android:fontFamily="sans-serif-condensed"
-                       android:textAlignment="center"
-                       android:textSize="@dimen/spacing_large"
-                       android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                       android:textColor="@color/black"
-                       android:gravity="center_horizontal" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Account Login"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spacing_large" />
 
 
-                   <com.google.android.material.textfield.TextInputLayout
-                       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                       android:textSize="14dp"
-                       android:layout_width="match_parent"
-                       android:hint="Parent Id"
-                       android:layout_height="wrap_content">
-
-                       <com.google.android.material.textfield.TextInputEditText
-                           android:id="@+id/parent_id"
-                           android:textSize="14dp"
-                           android:padding="@dimen/spacing_large"
-                           android:tooltipText="Enter your parent id"
-                           android:inputType="text"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                   </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parent Id"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/spacing_large"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/black"
+                        android:gravity="center_horizontal" />
 
 
-                   <View
-                       android:layout_width="0dp"
-                       android:layout_height="@dimen/spacing_large" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:textSize="14dp"
+                        android:layout_width="match_parent"
+                        android:hint="Parent Id"
+                        android:layout_height="wrap_content">
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="Password"
-                       android:textSize="@dimen/spacing_large"
-                       android:fontFamily="sans-serif-condensed"
-                       android:textAlignment="center"
-                       android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                       android:textColor="@color/black"
-                       android:gravity="center_horizontal" />
-
-                   <com.google.android.material.textfield.TextInputLayout
-                       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                       boxStrokeWidth="1dp"
-                       android:textSize="14dp"
-                       app:passwordToggleEnabled="true"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:hint="Password">
-
-                       <com.google.android.material.textfield.TextInputEditText
-                           android:id="@+id/password"
-                           android:padding="@dimen/spacing_middle"
-                           android:inputType="textPassword"
-                           android:textSize="14dp"
-                           android:tooltipText="Enter your password"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"/>
-                   </com.google.android.material.textfield.TextInputLayout>
-
-                   <View
-                       android:layout_width="0dp"
-                       android:layout_height="@dimen/spacing_mlarge" />
-
-                   <Button
-                       android:layout_width="match_parent"
-                       android:layout_height="55dp"
-                       android:id="@+id/login"
-                       android:text="Login"
-                       android:layout_marginBottom="@dimen/spacing_large"
-                       android:textColor="@android:color/white"/>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/parent_id"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textSize="14dp"
+                            android:padding="@dimen/spacing_large"
+                            android:tooltipText="Enter your parent id"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-                   <Button
-                       android:layout_width="wrap_content"
-                       android:layout_gravity="center"
-                       android:text="Developed By"
-                       android:id="@+id/developed_by"
-                       android:layout_marginTop="@dimen/spacing_medium"
-                       android:fontFamily="sans-serif-light"
-                       android:layout_height="wrap_content"/>
-               </LinearLayout>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spacing_large" />
 
-       </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Password"
+                        android:textSize="@dimen/spacing_large"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/black"
+                        android:gravity="center_horizontal" />
 
-   </androidx.core.widget.NestedScrollView>
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        boxStrokeWidth="1dp"
+                        android:textSize="14dp"
+                        app:passwordToggleEnabled="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/password"
+                            android:padding="@dimen/spacing_middle"
+                            android:inputType="textPassword"
+                            android:textSize="14dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:tooltipText="Enter your password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spacing_middle" />
 
 
-</RelativeLayout>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Developed By"
+                        android:textColor="@color/colorPrimary"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:id="@+id/developed_by"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:fontFamily="sans-serif-condensed"
+                        android:layout_height="wrap_content"/>
+
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spacing_xxlarge" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:clickable="true"
+            android:id="@+id/login"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="LOGIN"
+                android:clickable="true"
+                android:fontFamily="sans-serif-condensed"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textColor="@android:color/white" />
+        </com.balysv.materialripple.MaterialRippleLayout>
+    </RelativeLayout>
+
+</LinearLayout>

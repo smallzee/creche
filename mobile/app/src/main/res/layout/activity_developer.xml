@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_5"
     tools:context=".Developer">
 
     <androidx.core.widget.NestedScrollView
@@ -14,12 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/spacing_large"
             android:orientation="vertical"
             android:padding="@dimen/spacing_mxlarge">
 
             <TextView
                 android:layout_width="match_parent"
                 android:text="Project Topic"
+                android:fontFamily="sans-serif-condensed"
                 style="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="@dimen/spacing_mlarge"
                 android:textColor="@color/black"
@@ -28,11 +31,12 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal" />
 
+
             <TextView
                 android:layout_width="match_parent"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="sans-serif-condensed"
                 style="@style/TextAppearance.AppCompat.Body2"
-                android:text="Design and implementation of an android \n based student clearance system"
+                android:text="Design and implementation of an android \n  based creche management system"
                 android:textSize="@dimen/spacing_large"
                 android:padding="@dimen/spacing_large"
                 android:textColor="@color/black"
@@ -46,38 +50,43 @@
                 android:text="Student Information"
                 style="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="@dimen/spacing_mlarge"
+                android:fontFamily="sans-serif-condensed"
                 android:textColor="@color/black"
                 android:layout_marginBottom="@dimen/spacing_large"
                 android:textAlignment="center"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal" />
 
-          <ImageView
-              android:layout_width="200dp"
-              android:layout_marginTop="@dimen/spacing_medium"
-              android:layout_gravity="center_horizontal"
-              android:src="@drawable/image"
-              android:layout_marginBottom="@dimen/spacing_large"
-              android:layout_height="200dp"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/profile_image"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:src="@drawable/icon"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/spacing_large"
+                />
+
 
             <TextView
                 android:layout_width="match_parent"
-                android:text="Full Name : "
-                android:fontFamily="sans-serif-light"
+                android:text="Full Name : Aliu Nafisat Adetoun "
+                android:fontFamily="sans-serif-condensed"
                 android:textSize="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:textColor="@color/black"
                 style="@style/TextAppearance.AppCompat.Body2"
-                android:layout_marginBottom="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_middle"
                 android:textAlignment="center"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:text="Matric Number : "
+                android:text="Matric Number : HC20180103922 "
                 style="@style/TextAppearance.AppCompat.Body2"
                 android:layout_marginBottom="@dimen/spacing_medium"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="sans-serif-condensed"
                 android:textSize="@dimen/spacing_large"
                 android:textColor="@color/black"
                 android:textAlignment="center"
@@ -88,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:text="Department : Computer Science "
                 android:layout_marginBottom="@dimen/spacing_medium"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="sans-serif-condensed"
                 style="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="@dimen/spacing_large"
                 android:textColor="@color/black"
@@ -98,8 +107,9 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:text="Supervised By"
+                android:fontFamily="sans-serif-condensed"
                 style="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="@dimen/spacing_mlarge"
                 android:textColor="@color/black"
@@ -108,8 +118,18 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Dr. Adekigbe"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/spacing_large"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
 
 </RelativeLayout>

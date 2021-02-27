@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FPE Staff School</string>
+    <string name="title_activity_dashboard">MainActivity</string>
+    <string name="title_home">Dashbaord</string>
+    <string name="title_children">My Children</string>
+    <string name="title_notifications">Notifications</string>
+</resources>

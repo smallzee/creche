@@ -1,6 +1,7 @@
 package com.app.fpestaffschool;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -20,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -30,9 +32,10 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
-    public Button login,developed_by;
+    public AppCompatButton developed_by;
     public TextInputEditText parent_id,password;
     public ProgressDialog progressDialog;
+    public MaterialRippleLayout login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

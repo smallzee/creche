@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_image"
+    tools:context=".Splash">
+
+
+    <com.eyalbira.loadingdots.LoadingDots
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+
+        app:LoadingDots_auto_play="true"
+        app:LoadingDots_dots_color="@color/white"
+
+        app:LoadingDots_dots_count="4"
+        app:LoadingDots_dots_size="@dimen/spacing_large"
+
+        app:LoadingDots_dots_space="@dimen/spacing_medium"
+        app:LoadingDots_jump_duration="300"
+        app:LoadingDots_jump_height="8dp"
+        app:LoadingDots_loop_duration="800"
+        app:LoadingDots_loop_start_delay="100" />
+
+</RelativeLayout>
