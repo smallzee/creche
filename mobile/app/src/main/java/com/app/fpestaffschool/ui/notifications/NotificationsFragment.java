@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +30,6 @@ import java.util.List;
 
 public class NotificationsFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
 
     public List<Lists> mData = new ArrayList<>();
     public RecyclerView recyclerView;
@@ -39,8 +39,7 @@ public class NotificationsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
 
@@ -70,7 +69,6 @@ public class NotificationsFragment extends Fragment {
             JSONObject object = new JSONObject(response);
             JSONArray data = object.getJSONArray("notification");
 
-
             for (int i =0; i < data.length(); i++){
                 JSONObject notification_data = data.getJSONObject(i);
 
@@ -80,7 +78,7 @@ public class NotificationsFragment extends Fragment {
                 image = notification_data.getString("image");
                 created_at = notification_data.getString("created_at");
 
-                mData.add(new Lists(subject,message,created_at,image,id,"true"));
+                mData.add(new Lists(subject,message,created_at,image,id,"view_student"));
 
             }
 

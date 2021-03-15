@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +47,7 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
 
         String is_click = ((Lists) mData.get(position)).getIs_click();
 
+
         Transformation transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(50)
                 .oval(true)
@@ -53,15 +55,15 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
 
         Picasso.get().load(mData.get(position).getImage()).transform(transformation).into(holder.st_image);
 
-        if (is_click.equals("true")){
-            holder.click.setOnClickListener(new android.view.View.OnClickListener() {
-                @Override
-                public void onClick(android.view.View v) {
+        holder.click.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
 
 
-                }
-            });
-        }
+            }
+        });
+
+
 
     }
 

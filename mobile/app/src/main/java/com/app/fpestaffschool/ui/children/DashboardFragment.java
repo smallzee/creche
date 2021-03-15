@@ -27,7 +27,7 @@ import java.util.List;
 
 public class DashboardFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+
     public List<Lists> mData = new ArrayList<>();
     public RecyclerView recyclerView;
     public RecyclerViewAdapters recyclerViewAdapters;
@@ -37,8 +37,7 @@ public class DashboardFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_children, container, false);
 
         recyclerView = (RecyclerView) root.findViewById(R.id.my_recycler_view);

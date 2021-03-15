@@ -24,7 +24,6 @@ import org.json.JSONObject;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
 
     SharedPreferences parent_data;
     ImageView image;
@@ -32,10 +31,8 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
         parent_data = getActivity().getSharedPreferences("ALL_USER_INFO", Context.MODE_PRIVATE);
 
         fname = root.findViewById(R.id.fname);

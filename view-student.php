@@ -135,6 +135,9 @@ require_once 'libs/head.php';
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="tab_2">
+
+                        <a href="" class="btn btn-primary" style="margin-bottom: 20px;">Add Payment</a>
+
                         <div class="table-responsive">
                             <table class="table table-bordered" id="example1">
                                 <thead>
@@ -142,8 +145,10 @@ require_once 'libs/head.php';
                                     <th>SN</th>
                                     <th>Amount Paid</th>
                                     <th>Reference</th>
+                                    <th>Term</th>
                                     <th>Class</th>
                                     <th>Status</th>
+                                    <th>Academic Session</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -151,8 +156,10 @@ require_once 'libs/head.php';
                                     <th>SN</th>
                                     <th>Amount Paid</th>
                                     <th>Reference</th>
+                                    <th>Term</th>
                                     <th>Class</th>
                                     <th>Status</th>
+                                    <th>Academic Session</th>
                                 </tr>
                                 </tfoot>
                             </table>
