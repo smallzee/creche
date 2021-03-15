@@ -160,7 +160,27 @@ require_once 'libs/head.php';
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="tab_3">
-                        <a href="" class="btn btn-primary">Add Attendance</a>
+                        <a href="" class="btn btn-primary" style="margin-bottom: 20px">Add Attendance</a>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="example">
+                                <thead>
+                                <tr>
+                                    <th>SN</th>
+                                    <th>Attendance</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>SN</th>
+                                    <th>Attendance</th>
+                                    <th>Date</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
                     </div>
                     <!-- /.tab-pane -->
                 </div>
