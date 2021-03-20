@@ -116,3 +116,11 @@ function parent_info($id,$value){
     return $rs[$value];
 }
 
+function payment_type($n){
+    if ($n == 1){
+        return "Deduct from staff salary";
+    }else{
+        return "Direct payment";
+    }
+}
+

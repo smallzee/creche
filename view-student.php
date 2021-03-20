@@ -24,6 +24,37 @@ $data = $sql->fetch(PDO::FETCH_ASSOC);
 
 $page_title = ucwords($data['fname'])." - Dashboard";
 
+if (isset($_POST['add'])){
+    $amount = $_POST['amount'];
+    $term = $_POST['term'];
+    $academic_session = $_POST['session'];
+    $type = $_POST['type'];
+    $class_id = $data['class_id'];
+    $ref = uniqid();
+
+    $sql_check = $db->query("SELECT * FROM ".DB_PREFIX."payment WHERE student_id='$student_id' and term_id='$term' and academic_session='$academic_session'");
+    if ($sql_check->rowCount() >= 1){
+        $error[] = ucwords($data['fname'])." has already paid for his/her ".term($data['term'])."  school fee";
+    }
+
+    $error_count = count($error);
+    if ($error_count == 0){
+
+        $db->query("INSERT INTO ".DB_PREFIX."payment (student_id,amount,class_id,term_id,academic_session,payment_type,ref)
+        VALUES('$student_id','$amount','$class_id','$term','$academic_session','$type','$ref')");
+
+        set_flash(ucwords($data['fname']).' has been paid successful','info');
+
+    }else{
+        $msg = ($error_count == 1) ? 'An error occurred' : 'Some error(s) occurred';
+        foreach ($error as $value){
+            $msg.='<p>'.$value.'</p>';
+        }
+
+        set_flash($msg,'danger');
+    }
+}
+
 require_once 'libs/head.php';
 ?>
 
@@ -96,10 +127,67 @@ require_once 'libs/head.php';
 </div>
 <!-- /.modal -->
 
+<div class="modal fade" id="modal-default2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add Attendance</h4>
+            </div>
+            <div class="modal-body">
+
+                <form action="" method="post">
+
+                    <div class="form-group">
+                        <label for="">Attendance</label>
+                        <select name="attendance" class="form-control" required id="">
+                            <option value="" disabled selected>Select</option>
+                            <?php
+                            foreach (array('morning','afternoon','evening') as $value){
+                                ?>
+                                <option value="<?= $value ?>"> <?= ucwords($value) ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <h6 class="page-header">Children Guardian/Parent</h6>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Name</label>
+                                <input type="text" value="<?= parent_info($data['parent_id'],'fname') ?>" class="form-control" name="name" required placeholder="Name" id="">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Phone Number</label>
+                                <input type="text" class="form-control" value="<?= parent_info($data['parent_id'],'phone') ?>" name="phone" required placeholder="Phone Number" id="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" name="add-attendance" class="btn btn-primary" value="Submit" id="">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <section class="content">
     <div class="row">
 
         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+
+            <?php flash(); ?>
 
             <div class="box box-widget widget-user">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -223,6 +311,8 @@ require_once 'libs/head.php';
                                     <th>Payment Status</th>
                                     <th>Payment Type</th>
                                     <th>Academic Session</th>
+                                    <th>Created At</th>
+                                    <th>Paid At</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -235,14 +325,40 @@ require_once 'libs/head.php';
                                     <th>Payment Status</th>
                                     <th>Payment Type</th>
                                     <th>Academic Session</th>
+                                    <th>Created At</th>
+                                    <th>Paid At</th>
                                 </tr>
                                 </tfoot>
+                                <tbody>
+                                <?php
+                                    $sql = $db->query("SELECT p.*, c.name as class_name  FROM ".DB_PREFIX."payment p 
+                                    LEFT JOIN ".DB_PREFIX."class c 
+                                        ON p.class_id = c.id    
+                                    WHERE p.student_id='$student_id' ORDER BY p.id DESC");
+                                    while ($rs = $sql->fetch(PDO::FETCH_ASSOC)){
+                                        ?>
+                                        <tr>
+                                            <td><?= $sn++ ?></td>
+                                            <td><?= amount_format($rs['amount']) ?></td>
+                                            <td><?= $rs['ref'] ?></td>
+                                            <td><?= term($rs['term_id']) ?></td>
+                                            <td><?= $rs['class_name'] ?></td>
+                                            <td><?= $rs['status'] ?></td>
+                                            <td><?= payment_type($rs['payment_type']) ?></td>
+                                            <td><?= $rs['academic_session'] ?></td>
+                                            <td><?= $rs['created_at'] ?></td>
+                                            <td><?= $rs['paid_at'] ?></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="tab_3">
-                        <a href="" class="btn btn-primary" style="margin-bottom: 20px">Add Attendance</a>
+                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modal-default2" style="margin-bottom: 20px">Add Attendance</a>
 
                         <div class="table-responsive">
                             <table class="table table-bordered" id="example">
@@ -250,14 +366,18 @@ require_once 'libs/head.php';
                                 <tr>
                                     <th>SN</th>
                                     <th>Attendance</th>
-                                    <th>Date</th>
+                                    <th>Guardian Name</th>
+                                    <th>Guardian Phone Number</th>
+                                    <th>Attendance Date</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>SN</th>
                                     <th>Attendance</th>
-                                    <th>Date</th>
+                                    <th>Guardian Name</th>
+                                    <th>Guardian Phone Number</th>
+                                    <th>Attendance Date</th>
                                 </tr>
                                 </tfoot>
                             </table>
