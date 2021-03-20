@@ -160,7 +160,6 @@ require_once 'libs/head.php';
                                 <th>Class Teacher Id</th>
                                 <th>Class Teacher Name</th>
                                 <th>Class Name</th>
-                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -169,7 +168,6 @@ require_once 'libs/head.php';
                                 <th>Class Teacher Id</th>
                                 <th>Class Teacher Name</th>
                                 <th>Class Name</th>
-                                <th>Actions</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -187,12 +185,12 @@ require_once 'libs/head.php';
                                         <td><?= $rs['username'] ?></td>
                                         <td><?= ucwords($rs['fname']) ?></td>
                                         <td><?= ucwords($rs['name']) ?></td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a href="" class="btn btn-primary btn-sm">Edit</a>
-                                                <a href="" class="btn btn-primary btn-sm">View student</a>
-                                            </div>
-                                        </td>
+<!--                                        <td>-->
+<!--                                            <div class="btn-group">-->
+<!--                                                <a href="" class="btn btn-primary btn-sm">Edit</a>-->
+<!--                                                <a href="" class="btn btn-primary btn-sm">View student</a>-->
+<!--                                            </div>-->
+<!--                                        </td>-->
                                     </tr>
                                     <?php
                                 }

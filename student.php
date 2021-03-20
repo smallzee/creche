@@ -56,6 +56,11 @@ if (isset($_POST['add'])){
             term,academic_session,gender,birth)VALUES('$img','$parent_id','$fname','$class_id',
             '$term','$session','$gender','$birth')");
 
+            $last_id = $db->lastInsertId();
+            $application_id = sprintf("%05d", $last_id);
+
+            $up = $db->query("UPDATE " . DB_PREFIX . "students SET application_id='$application_id' WHERE id='$last_id'");
+
             set_flash("Student has been registered successfully","info");
 
             redirect(base_url('student.php'));
@@ -135,7 +140,7 @@ require_once 'libs/head.php';
                                 <select name="session" class="form-control" required id="">
                                     <option value="" disabled selected>Select</option>
                                     <?php
-                                    foreach (range('2020',date('Y')) as $value){
+                                    foreach (range(2021,date('Y')) as $value){
                                         $start = $value-1;
                                         ?>
                                         <option value="<?= $start.'-'.$value ?>"><?= $start.'-'.$value ?></option>
@@ -221,8 +226,8 @@ require_once 'libs/head.php';
                         <table class="table table-bordered table-striped table-hover" id="example1">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>Passport</th>
+                                    <th>Application Id</th>
                                     <th>Full Name</th>
                                     <th>Age</th>
                                     <th>Gender</th>
@@ -235,8 +240,8 @@ require_once 'libs/head.php';
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Id</th>
                                 <th>Passport</th>
+                                <th>Application Id</th>
                                 <th>Full Name</th>
                                 <th>Age</th>
                                 <th>Gender</th>
@@ -258,8 +263,8 @@ require_once 'libs/head.php';
                                 while ($rs = $sql->fetch(PDO::FETCH_ASSOC)){
                                     ?>
                                     <tr>
-                                        <td><?= $rs['id'] ?></td>
                                         <td><img src="<?= image_url($rs['image']) ?>" class="img-thumbnail" style="width: 50px; height: 60px;" alt=""></td>
+                                        <td><?= $rs['application_id'] ?></td>
                                         <td><?= $rs['fname'] ?></td>
                                         <td><?= date('Y') - explode("-",$rs['birth'])[0]  ?></td>
                                         <td><?= $rs['gender'] ?></td>

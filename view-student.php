@@ -27,6 +27,75 @@ $page_title = ucwords($data['fname'])." - Dashboard";
 require_once 'libs/head.php';
 ?>
 
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add Payment</h4>
+            </div>
+            <div class="modal-body">
+
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="">School Fee Amount</label>
+                                <input type="number" class="form-control" required placeholder="School Fee Amount" name="amount" readonly value="<?= student_class($data['class_id'],'school_fee') ?>" id="">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Term</label>
+                                <select name="term" class="form-control" required id="">
+                                    <option value="<?= $data['term'] ?>"><?= term($data['term']) ?></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Academic Session</label>
+                                <select name="session" class="form-control" required id="">
+                                    <?php
+                                    foreach (range(2021,date('Y')) as $value){
+                                        $start = $value-1;
+                                        ?>
+                                        <option value="<?= $start.'-'.$value ?>"><?= $start.'-'.$value ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="">Payment Type</label>
+                                <select name="type" class="form-control" required id="">
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="2">Direct Payment</option>
+                                    <option value="1">Deduct from staff salary</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" name="add" value="Submit" id="">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <section class="content">
     <div class="row">
 
@@ -87,6 +156,10 @@ require_once 'libs/head.php';
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
+                                    <td>Application Id</td>
+                                    <td><?= $data['application_id'] ?></td>
+                                </tr>
+                                <tr>
                                     <td>Student Name</td>
                                     <td><?= $data['fname'] ?></td>
                                 </tr>
@@ -136,7 +209,7 @@ require_once 'libs/head.php';
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="tab_2">
 
-                        <a href="" class="btn btn-primary" style="margin-bottom: 20px;">Add Payment</a>
+                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modal-default" style="margin-bottom: 20px;">Add Payment</a>
 
                         <div class="table-responsive">
                             <table class="table table-bordered" id="example1">
@@ -147,7 +220,8 @@ require_once 'libs/head.php';
                                     <th>Reference</th>
                                     <th>Term</th>
                                     <th>Class</th>
-                                    <th>Status</th>
+                                    <th>Payment Status</th>
+                                    <th>Payment Type</th>
                                     <th>Academic Session</th>
                                 </tr>
                                 </thead>
@@ -158,7 +232,8 @@ require_once 'libs/head.php';
                                     <th>Reference</th>
                                     <th>Term</th>
                                     <th>Class</th>
-                                    <th>Status</th>
+                                    <th>Payment Status</th>
+                                    <th>Payment Type</th>
                                     <th>Academic Session</th>
                                 </tr>
                                 </tfoot>
