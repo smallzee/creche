@@ -55,6 +55,38 @@ if (isset($_POST['add'])){
     }
 }
 
+if(isset($_POST['add-attendance'])){
+    $attendance = $_POST['attendance'];
+    $guardian_name = $_POST['name'];
+    $guardian_phone = $_POST['phone'];
+
+    if (!is_numeric($guardian_phone) or strlen($guardian_phone) != 11){
+        $error[] = "Invalid phone number entered, it should not exceed 11 digit number ";
+    }
+
+    if (strlen($guardian_name) < 5 or strlen($guardian_name) > 100){
+        $error[] = "Guardian name should be between 5 - 100 characters";
+    }
+
+    $attendance_date = date('Y-m-d H:i:s');
+
+    $error_count = count($error);
+    if ($error_count == 0){
+
+        $db->query("INSERT INTO ".DB_PREFIX."attendance (attendance,name,phone,attendance_date,student_id)
+        VALUES('$attendance','$guardian_name','$guardian_phone','$attendance_date','$student_id')");
+
+        set_flash("Attendance has been saved successfully","info");
+
+    }else{
+        $msg = ($error_count == 1) ? 'An error occurred' : 'Some error(s) occurred';
+        foreach ($error as $value){
+            $msg.='<p>'.$value.'</p>';
+        }
+        set_flash($msg,'danger');
+    }
+}
+
 require_once 'libs/head.php';
 ?>
 
@@ -380,6 +412,22 @@ require_once 'libs/head.php';
                                     <th>Attendance Date</th>
                                 </tr>
                                 </tfoot>
+                                <tbody>
+                                <?php
+                                    $sql = $db->query("SELECT * FROM ".DB_PREFIX."attendance WHERE student_id='$student_id' ORDER BY id");
+                                    while ($rs =  $sql->fetch(PDO::FETCH_ASSOC)){
+                                        ?>
+                                        <tr>
+                                            <td><?= $sn++ ?></td>
+                                            <td><?= ucwords($rs['attendance']) ?></td>
+                                            <td><?= $rs['name'] ?></td>
+                                            <td><?= $rs['phone'] ?></td>
+                                            <td><?= $rs['attendance_date'] ?></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                ?>
+                                </tbody>
                             </table>
                         </div>
 
