@@ -1,30 +1,64 @@
 package com.app.fpestaffschool;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import com.squareup.picasso.Picasso;
 
-public class Dashboard extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
 
+public class Dashboard extends Fragment {
+
+    SharedPreferences parent_data;
+    ImageView image;
+    public TextView fname,address,email,occupation,parent_id,phone,gender;
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
-    }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.dashboard, container, false);
 
+        parent_data = getActivity().getSharedPreferences("ALL_USER_INFO", Context.MODE_PRIVATE);
+
+        fname = root.findViewById(R.id.fname);
+        occupation = root.findViewById(R.id.occupation);
+        phone = root.findViewById(R.id.phone);
+        email = root.findViewById(R.id.email);
+        address = root.findViewById(R.id.address);
+        gender = root.findViewById(R.id.gender);
+        image = root.findViewById(R.id.profile_image);
+        parent_id = root.findViewById(R.id.parent_id);
+
+        try {
+
+            JSONObject object = new JSONObject(parent_data.getString("all_user_info", null));
+
+            fname.setText(object.getJSONObject("parent_data").getString("fname"));
+            occupation.setText(object.getJSONObject("parent_data").getString("occupation"));
+            phone.setText(object.getJSONObject("parent_data").getString("phone"));
+            email.setText(object.getJSONObject("parent_data").getString("email"));
+            address.setText(object.getJSONObject("parent_data").getString("address"));
+            gender.setText(object.getJSONObject("parent_data").getString("gender"));
+            parent_id.setText(object.getJSONObject("parent_data").getString("parent_id"));
+
+            Picasso.get().load(object.getJSONObject("parent_data").getString("image")).into(image);
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+
+        return root;
+    }
 }

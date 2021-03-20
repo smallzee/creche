@@ -7,11 +7,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -37,12 +35,16 @@ public class Login extends AppCompatActivity {
     public ProgressDialog progressDialog;
     public MaterialRippleLayout login;
 
+    public Func func;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         this.setTitle("Parent Account Login");
+
+        func = new Func(Login.this);
 
         login = findViewById(R.id.login);
         parent_id = findViewById(R.id.parent_id);
@@ -65,57 +67,34 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void vibrate() {
-        Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(100);
-    }
-
-    // toast alert
-    public void toast_alert(String msg){
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    // show dialog
-    public void show_dialog() {
-        this.progressDialog = new ProgressDialog(this);
-        this.progressDialog.setMessage("Please wait...");
-        this.progressDialog.setCancelable(false);
-        this.progressDialog.setIndeterminate(false);
-        this.progressDialog.show();
-    }
-
-    //hide dialog
-    public void hide_dialog() {
-        this.progressDialog.hide();
-    }
 
     public void User_login(String parent_id, String password){
 
         if (parent_id.isEmpty() || password.isEmpty()){
-            vibrate();
-            toast_alert("Parent id and password are required");
+            func.vibrate();
+            func.error_toast("Parent id and password are required");
             return;
         }
 
         if (parent_id.isEmpty()){
-            vibrate();
-            toast_alert("Parent id is required");
+            func.vibrate();
+            func.error_toast("Parent id is required");
             return;
         }
 
         if (password.isEmpty()){
-            vibrate();
-            toast_alert("Password is required");
+            func.vibrate();
+            func.error_toast("Password is required");
             return;
         }
 
-        show_dialog();
+        func.startDialog();
 
         StringRequest request = new StringRequest(Request.Method.POST, Core.SITE_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                hide_dialog();
+                func.dismissDialog();
 
                 try {
 
@@ -125,16 +104,16 @@ public class Login extends AppCompatActivity {
                     data = object.getJSONObject("status");
 
                     if (data.getString("error").equals("0")){
-                        vibrate();
-                        toast_alert(data.getString("msg"));
+                        func.vibrate();
+                        func.error_toast(data.getString("msg"));
                         return;
                     }
 
-                    vibrate();
+                    func.vibrate();
                     SharedPreferences.Editor user_info = getSharedPreferences("ALL_USER_INFO", MODE_PRIVATE).edit();
                     user_info.putString("all_user_info", object.toString());
                     user_info.apply();
-                    startActivity(new Intent(Login.this, Dashboard.class));
+                    startActivity(new Intent(Login.this, Main.class));
 
                 }catch (JSONException e){
                     e.printStackTrace();
@@ -145,9 +124,9 @@ public class Login extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                vibrate();
-                toast_alert("No internet connection, try again");
-                hide_dialog();
+                func.vibrate();
+                func.error_toast("No internet connection, try again");
+                func.dismissDialog();
             }
         }){
             @Override

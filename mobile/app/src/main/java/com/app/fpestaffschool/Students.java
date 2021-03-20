@@ -1,4 +1,4 @@
-package com.app.fpestaffschool.ui.notifications;
+package com.app.fpestaffschool;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,20 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.app.fpestaffschool.Lists;
-import com.app.fpestaffschool.R;
-import com.app.fpestaffschool.RecyclerViewAdapters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,8 +20,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationsFragment extends Fragment {
-
+public class Students extends Fragment {
 
     public List<Lists> mData = new ArrayList<>();
     public RecyclerView recyclerView;
@@ -37,18 +28,16 @@ public class NotificationsFragment extends Fragment {
     SharedPreferences sharedPreferences;
     public String response;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.students, container, false);
 
         recyclerView = (RecyclerView) root.findViewById(R.id.my_recycler_view);
         recyclerViewAdapters = new RecyclerViewAdapters(mData);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapters);
-
 
         return root;
     }
@@ -62,23 +51,23 @@ public class NotificationsFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("ALL_USER_INFO", Context.MODE_PRIVATE);
         response = sharedPreferences.getString("all_user_info", null);
 
-        String id,subject,image,message,created_at;
+        String id,name,image,class_name,gender;
 
         try {
 
             JSONObject object = new JSONObject(response);
-            JSONArray data = object.getJSONArray("notification");
+            JSONArray data = object.getJSONArray("children_data");
 
             for (int i =0; i < data.length(); i++){
-                JSONObject notification_data = data.getJSONObject(i);
+                JSONObject children_data = data.getJSONObject(i);
 
-                id = notification_data.getString("id");
-                subject = notification_data.getString("subject");
-                message = notification_data.getString("message");
-                image = notification_data.getString("image");
-                created_at = notification_data.getString("created_at");
+                id = children_data.getString("id");
+                name = children_data.getString("fname");
+                class_name = children_data.getString("class_name");
+                image = children_data.getString("image");
+                gender = children_data.getString("gender");
 
-                mData.add(new Lists(subject,message,created_at,image,id,"view_student"));
+                mData.add(new Lists(name,class_name,gender,image,id,"view_student"));
 
             }
 
@@ -86,5 +75,6 @@ public class NotificationsFragment extends Fragment {
         }catch (JSONException e){
             e.printStackTrace();
         }
+
     }
 }
