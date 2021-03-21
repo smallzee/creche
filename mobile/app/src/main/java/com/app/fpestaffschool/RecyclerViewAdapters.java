@@ -84,6 +84,14 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
 
                 }
 
+                if (is_click.equals("view_payment")){
+                    View_payment view_payment = new View_payment();
+                    view_payment.setArguments(bundle);
+
+                    ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, view_payment).commit();
+                }
+
             }
         });
 

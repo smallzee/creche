@@ -124,6 +124,7 @@ if (isset($_POST['school_fee'])){
         while ($rs = $sql->fetch(PDO::FETCH_ASSOC)){
             $data[] = array(
                 'id'=>$rs['id'],
+                'image'=>image_url('successful-payment.png'),
                 'ref'=>$rs['ref'],
                 'amount'=>$rs['amount'],
                 'term'=>term($rs['term_id']),
