@@ -70,7 +70,7 @@ public class Notifications extends Fragment {
                 image = notification_data.getString("image");
                 created_at = notification_data.getString("created_at");
 
-                mData.add(new Lists(subject,message,created_at,image,id,"view_student"));
+                mData.add(new Lists(subject,message,created_at,image,id,"view_notification"));
 
             }
 

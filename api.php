@@ -36,6 +36,7 @@ if (isset($_POST['login'])){
         while ($children_data = $children->fetch(PDO::FETCH_ASSOC)){
             $ch_data[] = array(
                 'id'=>$children_data['id'],
+                'application_id'=>$children_data['application_id'],
                 'image'=>image_url($children_data['image']),
                 'fname'=>ucwords($children_data['fname']),
                 'class_name'=>ucwords($children_data['class_name']),
@@ -83,5 +84,57 @@ if (isset($_POST['login'])){
     );
 
     echo json_encode($info);
+    exit();
+}
+
+if (isset($_POST['attendance'])){
+    $student_id = $_POST['student_id'];
+
+    $sql = $db->query("SELECT * FROM ".DB_PREFIX."attendance WHERE student_id='$student_id'");
+    if ($sql->rowCount() == 0){
+        $data['error'] = 0;
+        $data['msg'] = "No available attendance";
+    }else{
+        $data['error'] = 1;
+        while ($rs = $sql->fetch(PDO::FETCH_ASSOC)){
+            $data[] = $rs;
+        }
+    }
+
+    echo json_encode($data);
+    exit();
+}
+
+
+if (isset($_POST['school_fee'])){
+    $student_id = $_POST['student_id'];
+
+    $sql = $db->query("SELECT p.*, c.name as class_name  FROM ".DB_PREFIX."payment p 
+    LEFT JOIN ".DB_PREFIX."class c 
+        ON p.class_id = c.id    
+    WHERE p.student_id='$student_id' ORDER BY p.id DESC");
+
+    if ($sql->rowCount() == 0){
+        $data['error'] = 0;
+        $data['msg'] = "No payment for school fee yet";
+    }else{
+        $data['error'] = 1;
+        while ($rs = $sql->fetch(PDO::FETCH_ASSOC)){
+            $data[] = array(
+                'id'=>$rs['id'],
+                'ref'=>$rs['ref'],
+                'amount'=>$rs['amount'],
+                'term'=>term($rs['term_id']),
+                'class_name'=>$rs['class_name'],
+                'status'=>$rs['status'],
+                'payment_type'=>payment_type($rs['payment_type']),
+                'academic_session'=>$rs['academic_session'],
+                'created_at'=>$rs['created_at'],
+                'paid_at'=>$rs['paid_at']
+            );
+        }
+    }
+
+    echo json_encode($data);
     exit();
 }

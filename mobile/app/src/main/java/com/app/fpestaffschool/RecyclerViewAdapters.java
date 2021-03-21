@@ -58,12 +58,20 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
 
         Picasso.get().load(mData.get(position).getImage()).transform(transformation).into(holder.st_image);
 
+        Bundle bundle = new Bundle();
+        bundle.putString("view_id", ((Lists) mData.get(position)).getId());
+
         holder.click.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
 
                 if (is_click.equals("view_student")){
-                    
+
+                    View_student view_student = new View_student();
+                    view_student.setArguments(bundle);
+
+                    ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, view_student).commit();
                 }
 
             }
