@@ -52,7 +52,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="Design and implementation of an android based creche management system \n \n (A case study of staff school)"
+                        android:text="Design and implementation of online mobile application for creche management system \n \n (A case study of staff school)"
                         android:textSize="@dimen/spacing_large"
                         android:padding="@dimen/spacing_medium"
                         android:textColor="@color/black"

@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:fontFamily="sans-serif-condensed"
                 style="@style/TextAppearance.AppCompat.Body2"
-                android:text="Design and implementation of an android \n  based creche management system"
+                android:text="Design and implementation of online mobile application for creche management system \n \n (A case study of staff school)"
                 android:textSize="@dimen/spacing_large"
                 android:padding="@dimen/spacing_large"
                 android:textColor="@color/black"

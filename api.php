@@ -99,7 +99,14 @@ if (isset($_POST['attendance'])){
     }else{
         $data['error'] = 1;
         while ($rs = $sql->fetch(PDO::FETCH_ASSOC)){
-            $data[] = $rs;
+            $data[] = array(
+                'id'=>$rs['id'],
+                'image'=>image_url('successful-payment.png'),
+                'attendance'=>$rs['attendance'],
+                'name'=>$rs['name'],
+                'phone'=>$rs['phone'],
+                'date'=>$rs['attendance_date']
+            );
         }
     }
 

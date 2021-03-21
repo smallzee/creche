@@ -92,6 +92,13 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
                             .replace(R.id.container, view_payment).commit();
                 }
 
+                if (is_click.equals("view_attendance")){
+                    View_attendance view_attendance = new View_attendance();
+                    view_attendance.setArguments(bundle);
+
+                    ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, view_attendance).commit();
+                }
             }
         });
 

@@ -398,8 +398,8 @@ require_once 'libs/head.php';
                                 <tr>
                                     <th>SN</th>
                                     <th>Attendance</th>
-                                    <th>Guardian Name</th>
-                                    <th>Guardian Phone Number</th>
+                                    <th>Check-in / Check-out  Name</th>
+                                    <th>Check-in / Check-out Phone Number</th>
                                     <th>Attendance Date</th>
                                 </tr>
                                 </thead>
@@ -407,8 +407,8 @@ require_once 'libs/head.php';
                                 <tr>
                                     <th>SN</th>
                                     <th>Attendance</th>
-                                    <th>Guardian Name</th>
-                                    <th>Guardian Phone Number</th>
+                                    <th>Check-in / Check-out  Name</th>
+                                    <th>Check-in / Check-out Phone Number</th>
                                     <th>Attendance Date</th>
                                 </tr>
                                 </tfoot>

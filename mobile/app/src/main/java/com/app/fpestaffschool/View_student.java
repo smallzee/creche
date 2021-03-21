@@ -76,7 +76,26 @@ public class View_student extends Fragment {
                     public void onResponse(String response) {
 
                         func.dismissDialog();
-                        func.success_toast(response.toString());
+
+                        try {
+
+                            JSONObject object = new JSONObject(response);
+
+                            if (object.getString("error").equals("0")){
+                                func.error_toast(object.getString("msg"));
+                                func.vibrate();
+                                return;
+                            }
+
+                            SharedPreferences.Editor editor = getActivity().getSharedPreferences("attendance",Context.MODE_PRIVATE).edit();
+                            editor.putString("attendance", response.toString());
+                            editor.apply();
+
+                            getActivity(). getSupportFragmentManager().beginTransaction().replace(R.id.container, new Attendance_history()).addToBackStack(null).commit();
+
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
 
                     }
                 }, new Response.ErrorListener() {
