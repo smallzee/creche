@@ -142,6 +142,8 @@ public class View_student extends Fragment {
             JSONObject object = new JSONObject(response);
             JSONArray data = object.getJSONArray("children_data");
 
+
+
             String id,image,name;
 
             for (int i = 0; i < data.length(); i++){
@@ -164,6 +166,8 @@ public class View_student extends Fragment {
                     term.setText(children_data.getString("term"));
                     gender.setText(children_data.getString("gender"));
                     academic_session.setText(children_data.getString("academic_session"));
+
+                    break;
 
                 }
             }

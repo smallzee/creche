@@ -74,6 +74,16 @@ public class RecyclerViewAdapters extends RecyclerView.Adapter<RecyclerViewAdapt
                             .replace(R.id.container, view_student).commit();
                 }
 
+                if (is_click.equals("view_notification")){
+
+                    View_notification view_notification = new View_notification();
+                    view_notification.setArguments(bundle);
+
+                    ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, view_notification).commit();
+
+                }
+
             }
         });
 

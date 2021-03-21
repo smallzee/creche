@@ -18,7 +18,7 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.setTitle("Dashboard");
+        //this.setTitle("Dashboard");
         student = findViewById(R.id.student);
         home = findViewById(R.id.home);
         notification = findViewById(R.id.notification);

@@ -28,6 +28,8 @@ public class Students extends Fragment {
     SharedPreferences sharedPreferences;
     public String response;
 
+    public Func func;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class Students extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapters);
 
+        func = new Func(getActivity());
+
         return root;
     }
 
@@ -47,6 +51,8 @@ public class Students extends Fragment {
         super.onCreate(savedInstanceState);
 
         mData = new ArrayList<>();
+
+        func = new Func(getActivity());
 
         sharedPreferences = getActivity().getSharedPreferences("ALL_USER_INFO", Context.MODE_PRIVATE);
         response = sharedPreferences.getString("all_user_info", null);
@@ -57,6 +63,13 @@ public class Students extends Fragment {
 
             JSONObject object = new JSONObject(response);
             JSONArray data = object.getJSONArray("children_data");
+
+            if (object.getString("total_children").equals("0")){
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new Dashboard()).addToBackStack(null).commit();
+                func.vibrate();
+                func.error_toast("No available children yet, please check later");
+                return;
+            }
 
             for (int i =0; i < data.length(); i++){
                 JSONObject children_data = data.getJSONObject(i);

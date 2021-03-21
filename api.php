@@ -78,7 +78,9 @@ if (isset($_POST['login'])){
 
     $info = array(
         'status'=>$data,
+        'total_msg'=>$msg->rowCount(),
         'parent_data'=>$parent_info,
+        'total_children'=>$children->rowCount(),
         'children_data'=>$ch_data,
         'notification'=>$msg_data2
     );

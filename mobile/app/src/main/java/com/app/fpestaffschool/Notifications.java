@@ -28,6 +28,8 @@ public class Notifications extends Fragment {
     SharedPreferences sharedPreferences;
     public String response;
 
+    public Func func;
+
 
     @Nullable
     @Override
@@ -41,6 +43,11 @@ public class Notifications extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerViewAdapters);
 
+        func = new Func(getActivity());
+
+        getActivity().setTitle("Notifications");
+
+
         return root;
 
     }
@@ -48,6 +55,8 @@ public class Notifications extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        func = new Func(getActivity());
 
         mData = new ArrayList<>();
 
@@ -60,6 +69,14 @@ public class Notifications extends Fragment {
 
             JSONObject object = new JSONObject(response);
             JSONArray data = object.getJSONArray("notification");
+
+            if (object.getString("total_msg").equals("0")){
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, new Dashboard()).addToBackStack(null).commit();
+                func.vibrate();
+                func.error_toast("No available notification yet, please check later");
+                return;
+            }
+
 
             for (int i =0; i < data.length(); i++){
                 JSONObject notification_data = data.getJSONObject(i);

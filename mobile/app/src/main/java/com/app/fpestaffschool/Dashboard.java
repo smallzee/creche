@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,8 @@ public class Dashboard extends Fragment {
         View root = inflater.inflate(R.layout.dashboard, container, false);
 
         parent_data = getActivity().getSharedPreferences("ALL_USER_INFO", Context.MODE_PRIVATE);
+
+        getActivity().setTitle("Dashboard");
 
         fname = root.findViewById(R.id.fname);
         occupation = root.findViewById(R.id.occupation);
