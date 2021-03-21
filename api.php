@@ -65,7 +65,7 @@ if (isset($_POST['login'])){
                 if (in_array($parent_id,$decode_parent)){
                     $msg_data2[] = array(
                         'id'=>$msg_data[$i]['id'],
-                        'image'=>image_url('bell.jpeg'),
+                        'image'=>image_url('bell.jpg'),
                         'subject'=>ucwords($msg_data[$i]['subject']),
                         'message'=>$msg_data[$i]['message'],
                         'created_at'=>$msg_data[$i]['created_at']
